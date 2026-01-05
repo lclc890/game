@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C Programs – View Only</title>
+    <style>
+        body { font-family: monospace; background: #f5f5f5; }
+        pre { background: #ffffff; padding: 15px; border: 1px solid #ccc; overflow-x: auto; }
+        h2 { background: #222; color: #fff; padding: 8px; }
+    </style>
+</head>
+<body>
+
+<h1>C Programs (View Only – Exam)</h1>
+
+<h2>Program 1: Matrix Multiplication (matrixmulti.c)</h2>
+<pre>
+#include &lt;stdio.h&gt;
+void main()
+{
+int a[10][10],b[10][10],c[10][10];
+int i,j,k,m,n,o,p;
+printf("Enter the size of A matrix:\n");
+scanf("%d %d",&m,&n);
+printf("Enter the size of B matrix:\n");
+scanf("%d %d",&o,&p);
+if(n==o)
+{
+printf("Enter the elements of A matrix:\n");
+for(i=0;i&lt;m;i++)
+for(j=0;j&lt;n;j++)
+scanf("%d",&a[i][j]);
+printf("Enter the elements of B matrix:\n");
+for(i=0;i&lt;o;i++)
+for(j=0;j&lt;p;j++)
+scanf("%d",&b[i][j]);
+for(i=0;i&lt;m;i++)
+for(j=0;j&lt;p;j++)
+{
+c[i][j]=0;
+for(k=0;k&lt;n;k++)
+c[i][j]=c[i][j]+a[i][k]*b[k][j];
+}
+printf("\nC matrix is:\n");
+for(i=0;i&lt;m;i++)
+{
+for(j=0;j&lt;p;j++)
+printf("%d ",c[i][j]);
+printf("\n");
+}
+}
+else
+printf("Multiplication not possible\n");
+}
+</pre>
+
+<h2>Program 2: String Operations (string.c)</h2>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+void stlen(char[]);
+void stcmp(char[],char[]);
+void stcat(char[],char[]);
+
+void main()
+{
+char st1[20],st2[20];
+printf("Enter first string:\n");
+scanf("%s",st1);
+printf("Enter second string:\n");
+scanf("%s",st2);
+stlen(st1);
+stlen(st2);
+stcmp(st1,st2);
+stcat(st1,st2);
+}
+
+void stlen(char s[])
+{
+printf("Length of %s is %d\n",s,strlen(s));
+}
+
+void stcmp(char a[],char b[])
+{
+int r=strcmp(a,b);
+if(r==0)
+printf("Strings are equal\n");
+else if(r&gt;0)
+printf("%s is greater\n",a);
+else
+printf("%s is greater\n",b);
+}
+
+void stcat(char a[],char b[])
+{
+strcat(a,b);
+printf("Concatenated string: %s\n",a);
+}
+</pre>
+
+<h2>Program 3: Structure – Book Search</h2>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct book {
+int book_id;
+char title[50];
+char author[50];
+};
+
+int main()
+{
+int n,i,found=0;
+char search[50];
+printf("Enter number of books:");
+scanf("%d",&n);
+struct book b[n];
+
+for(i=0;i&lt;n;i++)
+{
+printf("ID:");
+scanf("%d",&b[i].book_id);
+printf("Title:");
+scanf(" %[^\n]",b[i].title);
+printf("Author:");
+scanf(" %[^\n]",b[i].author);
+}
+
+printf("Enter title to search:");
+scanf(" %[^\n]",search);
+
+for(i=0;i&lt;n;i++)
+{
+if(strcmp(b[i].title,search)==0)
+{
+printf("Book Found\n");
+found=1;
+}
+}
+if(!found)
+printf("Book not found\n");
+return 0;
+}
+</pre>
+
+<h2>Program 4: Structure – Employee Salary</h2>
+<pre>
+#include &lt;stdio.h&gt;
+struct Employee{
+int id;
+char name[20];
+float salary;
+};
+
+int main()
+{
+struct Employee e1,e2;
+scanf("%d%s%f",&e1.id,e1.name,&e1.salary);
+scanf("%d%s%f",&e2.id,e2.name,&e2.salary);
+
+if(e1.salary&gt;e2.salary)
+printf("%s has higher salary\n",e1.name);
+else
+printf("%s has higher salary\n",e2.name);
+return 0;
+}
+</pre>
+
+<h2>Program 5: GCD and LCM</h2>
+<pre>
+#include &lt;stdio.h&gt;
+int gcd(int a,int b)
+{
+while(b!=0)
+{
+int t=b;
+b=a%b;
+a=t;
+}
+return a;
+}
+
+int main()
+{
+int a,b;
+scanf("%d%d",&a,&b);
+printf("GCD=%d\n",gcd(a,b));
+printf("LCM=%d\n",(a*b)/gcd(a,b));
+return 0;
+}
+</pre>
+
+<h2>Program 6: Pointer Addition</h2>
+<pre>
+#include &lt;stdio.h&gt;
+int main()
+{
+int a,b,*p1,*p2;
+scanf("%d%d",&a,&b);
+p1=&a;
+p2=&b;
+printf("Sum=%d\n",*p1+*p2);
+return 0;
+}
+</pre>
+
+<h2>Program 7: Floyd’s Triangle</h2>
+<pre>
+#include &lt;stdio.h&gt;
+int main()
+{
+int r,n=1;
+scanf("%d",&r);
+for(int i=1;i&lt;=r;i++)
+{
+for(int j=1;j&lt;=i;j++)
+printf("%d ",n++);
+printf("\n");
+}
+return 0;
+}
+</pre>
+
+<h2>Program 8: Matrix Transpose</h2>
+<pre>
+#include &lt;stdio.h&gt;
+int main()
+{
+int r,c;
+scanf("%d%d",&r,&c);
+int a[r][c],t[c][r];
+for(int i=0;i&lt;r;i++)
+for(int j=0;j&lt;c;j++)
+scanf("%d",&a[i][j]);
+
+for(int i=0;i&lt;r;i++)
+for(int j=0;j&lt;c;j++)
+t[j][i]=a[i][j];
+
+for(int i=0;i&lt;c;i++)
+{
+for(int j=0;j&lt;r;j++)
+printf("%d ",t[i][j]);
+printf("\n");
+}
+return 0;
+}
+</pre>
+
+</body>
+</html>
